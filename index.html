@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda con Vuelta Atrás | Inteligencia Artificial I</title>
+    <link rel="stylesheet" href="css/estilo.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== BARRA DE PROGRESO ===== -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- ===== NAVEGACIÓN LATERAL (índice) ===== -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="img/logo-utelvt.jpg" alt="Logo UTELVT" class="logo">
+            <h2>UTELVT</h2>
+            <p>Inteligencia Artificial I</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#portada" class="active">🏠 Portada</a></li>
+            <li><a href="#introduccion">1. Introducción</a></li>
+            <li><a href="#concepto">2. ¿Qué es?</a></li>
+            <li><a href="#estructura">3. Estructura del algoritmo</a></li>
+            <li><a href="#paradigma">4. Elegir, explorar, deshacer</a></li>
+            <li><a href="#ejemplo">5. Ejemplo: Subconjuntos</a></li>
+            <li><a href="#complejidad">6. Complejidad</a></li>
+            <li><a href="#optimizacion">7. Optimizaciones</a></li>
+            <li><a href="#aplicaciones">8. Aplicaciones</a></li>
+            <li><a href="#nreinas">9. Problema N Reinas</a></li>
+            <li><a href="#conclusion">10. Conclusión</a></li>
+            <li><a href="#referencias">11. Referencias</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón hamburguesa para móvil -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="main-content">
+
+        <!-- ===== PORTADA ===== -->
+        <section id="portada" class="section portada">
+            <div class="portada-content">
+                <img src="img/logo-utelvt.jpg" alt="Logo UTELVT" class="logo-portada">
+                <h1>UNIVERSIDAD TÉCNICA<br>"LUIS VARGAS TORRES" DE ESMERALDAS</h1>
+                <h2 class="titulo-tema">LA BÚSQUEDA CON VUELTA ATRÁS</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Materia:</span>
+                        <span class="value">Inteligencia Artificial I</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Curso:</span>
+                        <span class="value">8vo</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Docente:</span>
+                        <span class="value">Ing. Choez Cindy</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Fecha:</span>
+                        <span class="value">12/10/2026</span>
+                    </div>
+                </div>
+                <div class="integrantes">
+                    <h3>Integrantes:</h3>
+                    <ul>
+                        <li>Coronel Proaño Kevin Adrian</li>
+                        <li>García Morales Yulexi Cristina</li>
+                        <li>Mera Santander Erick Steeven</li>
+                        <li>Quintero Espinoza Roris Martin</li>
+                    </ul>
+                </div>
+                <a href="#introduccion" class="btn-comenzar">Comenzar exposición →</a>
+            </div>
+        </section>
+
+        <!-- ===== 1. INTRODUCCIÓN ===== -->
+        <section id="introduccion" class="section">
+            <h2 class="section-title">1. Introducción</h2>
+            <div class="card">
+                <p>
+                    La <strong>búsqueda con vuelta atrás (backtracking)</strong> es una técnica algorítmica fundamental 
+                    para resolver problemas de <em>satisfacción de restricciones</em> y de <em>optimización combinatoria</em>.
+                </p>
+                <p>
+                    Construye las soluciones de manera incremental y <strong>abandona una rama de exploración</strong> 
+                    en cuanto detecta que no puede conducir a una solución válida.
+                </p>
+                <div class="dato-curioso">
+                    <span class="icono">💡</span>
+                    <p>El término <em>"backtrack"</em> fue acuñado por el profesor <strong>D. H. Lehmer</strong>, 
+                    de la Universidad de California en Berkeley (NIST, 2021).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 2. CONCEPTO ===== -->
+        <section id="concepto" class="section">
+            <h2 class="section-title">2. ¿Qué es la búsqueda con vuelta atrás?</h2>
+            
+            <div class="card">
+                <h3>Definición de Dechter (2003)</h3>
+                <p>
+                    Es un <strong>método de búsqueda completa</strong> que recorre en profundidad el espacio de 
+                    soluciones parciales. Cada paso asigna un valor a una variable adicional y extiende así 
+                    una solución parcial candidata.
+                </p>
+                <p>
+                    Cuando aparece una variable ninguno de cuyos valores es consistente con la solución parcial 
+                    actual, se produce un <strong>callejón sin salida (dead-end)</strong>; en ese momento el algoritmo 
+                    retrocede hasta una variable anterior e intenta asignarle un valor distinto que evite el conflicto.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Analogía de Stanford University (2024)</h3>
+                <p>
+                    El algoritmo avanza por un camino tomando decisiones en distintos puntos; si llega a un 
+                    callejón sin salida, <strong>regresa al último punto donde decidió algo</strong> y elige otra 
+                    alternativa, siempre que queden opciones disponibles.
+                </p>
+            </div>
+
+            <div class="card destacado">
+                <h3>🌳 El árbol de búsqueda</h3>
+                <ul>
+                    <li><strong>Nodo:</strong> asignación parcial de valores a variables</li>
+                    <li><strong>Raíz:</strong> asignación vacía</li>
+                    <li><strong>Arista:</strong> asignación de un valor a una variable adicional</li>
+                    <li><strong>Poda:</strong> cuando un nodo viola una restricción, se elimina el subárbol</li>
+                </ul>
+                <p class="nota">
+                    Esto garantiza que la búsqueda sea <strong>completa</strong>: si existe una solución, 
+                    la vuelta atrás la encuentra (Dechter, 2003).
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 3. ESTRUCTURA ===== -->
+        <section id="estructura" class="section">
+            <h2 class="section-title">3. Estructura del algoritmo</h2>
+            <div class="card">
+                <p>
+                    Gurari (1999) describe el algoritmo como un <strong>refinamiento del enfoque de fuerza bruta</strong>. 
+                    Las soluciones se representan mediante vectores (v₁, ..., vₘ) y el algoritmo recorre en 
+                    profundidad los dominios de esos vectores.
+                </p>
+            </div>
+
+            <h3 class="subtitulo">Pseudocódigo del algoritmo</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Figura 1 - Pseudocódigo de vuelta atrás</span>
+                    <button class="btn-copiar" onclick="copiarCodigo(this)">📋 Copiar</button>
+                </div>
+                <pre><code>ALGORITHM try(v1,...,vi)
+    IF (v1,...,vi) is a solution THEN
+        RETURN (v1,...,vi)
+    FOR each v DO
+        IF (v1,...,vi,v) is acceptable vector THEN
+            sol = try(v1,...,vi,v)
+            IF sol != () THEN
+                RETURN sol
+            END
+        END
+    END
+    RETURN ()</code></pre>
+            </div>
+            <p class="fuente">Nota. Adaptado de Gurari (1999).</p>
+
+            <div class="card">
+                <h3>Espacio de soluciones</h3>
+                <p>
+                    Si <strong>Sᵢ</strong> es el dominio de <strong>vᵢ</strong>, el producto 
+                    <strong>S₁ × ... × Sₘ</strong> constituye el espacio de soluciones del problema.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 4. PARADIGMA ===== -->
+        <section id="paradigma" class="section">
+            <h2 class="section-title">4. El paradigma «Elegir, Explorar, Deshacer»</h2>
+            <p class="intro-text">Stanford University (2024) sintetiza la vuelta atrás recursiva en tres fases:</p>
+            
+            <div class="fases-grid">
+                <div class="fase-card">
+                    <div class="fase-numero">1</div>
+                    <h3>Elegir</h3>
+                    <p>Un bucle considera todos los movimientos posibles y elige uno, ajustando el estado.</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-numero">2</div>
+                    <h3>Explorar</h3>
+                    <p>Pasa el estado modificado a la función recursiva para ver si conduce a la solución.</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-numero">3</div>
+                    <h3>Deshacer</h3>
+                    <p>Si no funciona, restaura el estado anterior antes de probar la siguiente opción.</p>
+                </div>
+            </div>
+
+            <div class="card advertencia">
+                <h3>⚠️ Consideraciones importantes</h3>
+                <ul>
+                    <li>La vuelta atrás <strong>no siempre encuentra el camino más corto</strong>.</li>
+                    <li>Hay que llevar un <strong>registro de los estados ya visitados</strong> para no caer en recursión infinita.</li>
+                    <li>En el ejemplo del laberinto se usan <em>"migajas de pan"</em> para marcar celdas exploradas.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 5. EJEMPLO SUBCONJUNTOS ===== -->
+        <section id="ejemplo" class="section">
+            <h2 class="section-title">5. Ejemplo: Generación de Subconjuntos</h2>
+            <div class="card">
+                <p>
+                    Para <strong>S = {a, b, c}</strong>, el conjunto potencia contiene <strong>8 subconjuntos</strong>, 
+                    desde el vacío hasta {a, b, c}. Con cada elemento se toma una decisión binaria: 
+                    <strong>incluirlo o descartarlo</strong>.
+                </p>
+            </div>
+
+            <h3 class="subtitulo">Código en C++</h3>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Figura 2 - Generación de subconjuntos</span>
+                    <button class="btn-copiar" onclick="copiarCodigo(this)">📋 Copiar</button>
+                </div>
+                <pre><code>#include &lt;iostream&gt;
+#include "console.h"
+using namespace std;
+
+void fancyPrint(string s) {
+    cout &lt;&lt; "{";
+    for (int i = 0; i &lt; s.length(); i++) {
+        cout &lt;&lt; s[i];
+        if (i != s.length() - 1) {
+            cout &lt;&lt; ", ";
+        }
+    }
+    cout &lt;&lt; "}" &lt;&lt; endl;
+}
+
+void printSubsets(string soFar, string rest) {
+    if (rest.empty()) {
+        fancyPrint(soFar);
+        return;
+    }
+    char thisOne = rest[0];
+    string newRest = rest.substr(1);
+    printSubsets(soFar, newRest);
+    printSubsets(soFar + thisOne, newRest);
+}
+
+void printSubsets(string s) {
+    printSubsets("", s);
+}
+
+int main() {
+    printSubsets("abc");
+    return 0;
+}</code></pre>
+            </div>
+
+            <h3 class="subtitulo">Árbol de decisiones para {a, b, c}</h3>
+            <div class="arbol-decisiones">
+                <div class="nodo-raiz">¿a?</div>
+                <div class="rama">
+                    <div class="rama-no">
+                        <span class="etiqueta-no">no</span>
+                        <div class="nodo">¿b?</div>
+                        <div class="rama">
+                            <div class="rama-no">
+                                <span class="etiqueta-no">no</span>
+                                <div class="nodo">¿c?</div>
+                                <div class="rama">
+                                    <div class="rama-no"><span class="etiqueta-no">no</span><div class="hoja">{}</div></div>
+                                    <div class="rama-si"><span class="etiqueta-si">sí</span><div class="hoja">{c}</div></div>
+                                </div>
+                            </div>
+                            <div class="rama-si">
+                                <span class="etiqueta-si">sí</span>
+                                <div class="nodo">¿c?</div>
+                                <div class="rama">
+                                    <div class="rama-no"><span class="etiqueta-no">no</span><div class="hoja">{b}</div></div>
+                                    <div class="rama-si"><span class="etiqueta-si">sí</span><div class="hoja">{b, c}</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rama-si">
+                        <span class="etiqueta-si">sí</span>
+                        <div class="nodo">¿b?</div>
+                        <div class="rama">
+                            <div class="rama-no">
+                                <span class="etiqueta-no">no</span>
+                                <div class="nodo">¿c?</div>
+                                <div class="rama">
+                                    <div class="rama-no"><span class="etiqueta-no">no</span><div class="hoja">{a}</div></div>
+                                    <div class="rama-si"><span class="etiqueta-si">sí</span><div class="hoja">{a, c}</div></div>
+                                </div>
+                            </div>
+                            <div class="rama-si">
+                                <span class="etiqueta-si">sí</span>
+                                <div class="nodo">¿c?</div>
+                                <div class="rama">
+                                    <div class="rama-no"><span class="etiqueta-no">no</span><div class="hoja">{a, b}</div></div>
+                                    <div class="rama-si"><span class="etiqueta-si">sí</span><div class="hoja">{a, b, c}</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 6. COMPLEJIDAD ===== -->
+        <section id="complejidad" class="section">
+            <h2 class="section-title">6. Análisis de Complejidad</h2>
+            
+            <div class="complejidad-grid">
+                <div class="card complejidad-card">
+                    <h3>⏱️ Complejidad Temporal</h3>
+                    <p>En el peor caso es <strong>exponencial</strong>:</p>
+                    <div class="formula">
+                        T(n) = k · T(n−1), T(0) = 1 ⟹ T(n) = O(kⁿ)
+                    </div>
+                    <p class="nota">Para n variables con dominios de tamaño k.</p>
+                </div>
+                <div class="card complejidad-card">
+                    <h3>💾 Complejidad Espacial</h3>
+                    <p><strong>Lineal</strong> — mantiene una sola solución parcial en memoria.</p>
+                    <p class="nota">Solo almacena el camino raíz → nodo actual (Gurari, 1999).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📌 Observaciones</h3>
+                <ul>
+                    <li>La fórmula O(kⁿ) es un <strong>modelo simplificado</strong>: supone dominios iguales, costo constante y ausencia de poda.</li>
+                    <li>El rendimiento real depende de la <strong>estructura del problema</strong>, sus restricciones y estrategias de poda (Dechter, 2003).</li>
+                    <li>En generación de subconjuntos, el número de llamadas es <strong>O(2ⁿ)</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 7. OPTIMIZACIONES ===== -->
+        <section id="optimizacion" class="section">
+            <h2 class="section-title">7. Técnicas de Optimización</h2>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="abrirTab(event, 'tab-propagacion')">Propagación</button>
+                <button class="tab-btn" onclick="abrirTab(event, 'tab-heuristicas')">Heurísticas</button>
+                <button class="tab-btn" onclick="abrirTab(event, 'tab-backjumping')">Backjumping</button>
+                <button class="tab-btn" onclick="abrirTab(event, 'tab-backmarking')">Backmarking</button>
+            </div>
+
+            <div id="tab-propagacion" class="tab-content active">
+                <div class="card">
+                    <h3>🔍 Forward Checking</h3>
+                    <p>Examina los dominios restantes inmediatamente después de cada asignación y elimina valores que violarían restricciones.</p>
+                    <h3>🔗 Consistencia de Arco (AC-3)</h3>
+                    <p>Cuando se elimina un valor de un dominio, el cambio se propaga por todos los arcos de restricción conectados.</p>
+                    <div class="alerta">
+                        <strong>⚠️ Thrashing:</strong> ocurre cuando el algoritmo redescubre una y otra vez las mismas inconsistencias.
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-heuristicas" class="tab-content">
+                <div class="card">
+                    <h3>🎯 Principio Fail-First</h3>
+                    <p>Asignar primero la variable <strong>más restringida</strong> (la que tiene menos valores viables).</p>
+                    <p>Concentra el esfuerzo de poda cerca de la parte superior del árbol, donde tiene mayor impacto.</p>
+                    <h3>📊 Ordenación de valores</h3>
+                    <p>Cuando se busca una sola solución, intentar primero el valor que deja más opciones disponibles.</p>
+                </div>
+            </div>
+
+            <div id="tab-backjumping" class="tab-content">
+                <div class="card">
+                    <h3>⏪ Backjumping dirigido por conflictos</h3>
+                    <p>Identifica qué decisión anterior causó el fallo actual y <strong>retrocede directamente hasta ella</strong>, saltándose decisiones intermedias irrelevantes.</p>
+                    <h3>📜 Perspectiva histórica</h3>
+                    <ul>
+                        <li><strong>Stallman y Sussman:</strong> dependency-directed backtracking</li>
+                        <li><strong>Gaschnig:</strong> primer algoritmo explícito de backjumping</li>
+                        <li><strong>Dechter:</strong> algoritmo basado en grafos</li>
+                        <li><strong>Prosser:</strong> algoritmo CBJ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-backmarking" class="tab-content">
+                <div class="card">
+                    <h3>📝 Backmarking</h3>
+                    <p>Recuerda dónde fallaron las pruebas de consistencia anteriores para evitar repetir verificaciones.</p>
+                    <p>Mantiene dos tablas:</p>
+                    <ul>
+                        <li>Variable más temprana en conflicto con cada asignación</li>
+                        <li>Variable más temprana que cambió de valor desde la última visita</li>
+                    </ul>
+                    <p class="nota">No poda el espacio, pero reduce verificaciones de consistencia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 8. APLICACIONES ===== -->
+        <section id="aplicaciones" class="section">
+            <h2 class="section-title">8. Aplicaciones</h2>
+            
+            <h3 class="subtitulo">Problemas de Satisfacción de Restricciones (CSP)</h3>
+            <div class="apps-grid">
+                <div class="app-card">♛ Ocho reinas</div>
+                <div class="app-card">🔢 Sudoku</div>
+                <div class="app-card">🎨 Coloración de grafos</div>
+                <div class="app-card">✅ Satisfacibilidad booleana (SAT)</div>
+                <div class="app-card">📅 Programación de recursos</div>
+                <div class="app-card">🧩 Rompecabezas</div>
+            </div>
+
+            <h3 class="subtitulo">Otras áreas (Dechter, 2003)</h3>
+            <div class="card">
+                <ul>
+                    <li>Solucionadores <strong>SAT</strong> para verificación de hardware y software</li>
+                    <li>Asignación de registros en <strong>compiladores</strong></li>
+                    <li>Generación automática de <strong>patrones de prueba</strong></li>
+                    <li>Elaboración de <strong>horarios</strong></li>
+                    <li>Búsqueda en <strong>árboles de juegos</strong> en IA</li>
+                </ul>
+            </div>
+
+            <h3 class="subtitulo">Aportes de Gurari (1999)</h3>
+            <div class="card">
+                <ul>
+                    <li>Problema del <strong>viajante</strong></li>
+                    <li>Cálculo de la <strong>envolvente convexa</strong> (algoritmo de Graham)</li>
+                    <li>Generación de <strong>permutaciones</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 9. N REINAS ===== -->
+        <section id="nreinas" class="section">
+            <h2 class="section-title">9. El Problema de las N Reinas</h2>
+            <div class="card">
+                <p>
+                    Colocar <strong>n reinas</strong> en un tablero de <strong>n × n</strong> sin que se amenacen entre sí.
+                </p>
+                <ul>
+                    <li>Espacio de soluciones: <strong>{1, 2, 3, …, n}ⁿ</strong></li>
+                    <li>Probar todos los vectores implica <strong>nⁿ</strong> casos</li>
+                    <li>Si las reinas deben estar en columnas diferentes: baja a <strong>n!</strong></li>
+                    <li>Comprobar amenazas durante el proceso reduce aún más las configuraciones</li>
+                </ul>
+            </div>
+
+            <h3 class="subtitulo">Solución para n = 4</h3>
+            <div class="reinas-container">
+                <div class="tablero">
+                    <div class="fila">
+                        <div class="celda blanca"></div>
+                        <div class="celda negra"></div>
+                        <div class="celda blanca"></div>
+                        <div class="celda negra reina">♛</div>
+                    </div>
+                    <div class="fila">
+                        <div class="celda negra"></div>
+                        <div class="celda blanca reina">♛</div>
+                        <div class="celda negra"></div>
+                        <div class="celda blanca"></div>
+                    </div>
+                    <div class="fila">
+                        <div class="celda blanca reina">♛</div>
+                        <div class="celda negra"></div>
+                        <div class="celda blanca"></div>
+                        <div class="celda negra"></div>
+                    </div>
+                    <div class="fila">
+                        <div class="celda negra"></div>
+                        <div class="celda blanca"></div>
+                        <div class="celda negra reina">♛</div>
+                        <div class="celda blanca"></div>
+                    </div>
+                </div>
+                <div class="info-solucion">
+                    <h3>Solución válida: (2, 4, 1, 3)</h3>
+                    <p>La búsqueda explora el árbol de manera recursiva, colocando una reina por columna y descartando las configuraciones que provocan una amenaza.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 10. CONCLUSIÓN ===== -->
+        <section id="conclusion" class="section">
+            <h2 class="section-title">10. Conclusión</h2>
+            <div class="card conclusion">
+                <p>
+                    La búsqueda con vuelta atrás resuelve problemas de satisfacción de restricciones y de 
+                    optimización combinatoria <strong>construyendo soluciones por etapas</strong> y 
+                    <strong>podando grandes porciones del espacio de búsqueda</strong> en cuanto detecta una inconsistencia.
+                </p>
+                <p>
+                    Permite trabajar con <strong>memoria lineal</strong>, aunque su peor caso siga siendo exponencial.
+                </p>
+                <p>
+                    Su rendimiento práctico depende de qué tan pronto se identifican los fracasos, y por eso:
+                </p>
+                <ul>
+                    <li>Propagación de restricciones</li>
+                    <li>Heurísticas de ordenación</li>
+                    <li>Retroceso inteligente</li>
+                    <li>Backmarking</li>
+                </ul>
+                <p>
+                    El paradigma <strong>elegir, explorar y deshacer</strong> sirve de base común para problemas 
+                    muy distintos, desde acertijos hasta la verificación de hardware y software.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== 11. REFERENCIAS ===== -->
+        <section id="referencias" class="section">
+            <h2 class="section-title">11. Referencias</h2>
+            <div class="card referencias">
+                <p>Dechter, R. (2003). <em>General search strategies: Look-ahead</em>. In R. Dechter, Constraint processing (pp. 117-149). Morgan Kaufmann.</p>
+                <p>Gurari, E. (1999). <em>Backtracking Algorithms</em>. The Ohio State University.</p>
+                <p>National Institute of Standards and Technology. (2021). <em>Backtracking</em>. Dictionary of Algorithms and Data Structures.</p>
+                <p>Stanford University. (2024). <em>Recursive Backtracking and Enumeration</em>. CS106B: Programming Abstractions.</p>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <p>Universidad Técnica "Luis Vargas Torres" de Esmeraldas — Inteligencia Artificial I</p>
+            <p>© 2026 — Todos los derechos reservados</p>
+        </footer>
+
+    </main>
+
+    <!-- Botón volver arriba -->
+    <button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
